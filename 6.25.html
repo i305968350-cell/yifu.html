@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>루바토 부티크</title>
+    <style>
+        :root {
+            --burgundy: #58111A;
+            --deep-wine: #38070B;
+            --gold: #D4AF37;
+            --text-light: #F5E6E8;
+            --text-muted: #B39296;
+            --white: #FFFFFF;
+            --max-width: 1200px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            font-family: 'Pretendard', 'Malgun Gothic', sans-serif;
+            background-color: var(--burgundy);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        li { list-style: none; }
+        a { text-decoration: none; color: inherit; }
+
+        .container {
+            width: 100%;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* HEADER AREA */
+        header {
+            background-color: var(--deep-wine);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--gold);
+        }
+
+        .header-box {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            color: var(--white);
+        }
+        .logo span { 
+            color: var(--gold); 
+            font-size: 14px;
+            margin-left: 6px;
+            letter-spacing: 2px;
+        }
+
+        .nav-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 12px;
+        }
+
+        .top-utility {
+            display: flex;
+            gap: 16px;
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+        .top-utility a:hover { color: var(--gold); }
+
+        .main-menu {
+            display: flex;
+            gap: 35px;
+        }
+        .main-menu a {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text-light);
+            position: relative;
+            padding: 6px 0;
+            transition: color 0.3s;
+        }
+        .main-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--gold);
+            transition: width 0.3s ease;
+        }
+        .main-menu a:hover { color: var(--gold); }
+        .main-menu a:hover::after { width: 100%; }
+
+        /* HERO BANNER AREA */
+        .hero-banner {
+            background: linear-gradient(180deg, var(--deep-wine) 0%, var(--burgundy) 100%);
+            height: 420px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+        .hero-content .season-tag {
+            font-size: 13px;
+            color: var(--gold);
+            font-weight: 700;
+            letter-spacing: 3px;
+            margin-bottom: 16px;
+            display: inline-block;
+        }
+        .hero-content h1 {
+            font-size: 42px;
+            font-weight: 800;
+            line-height: 1.3;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+        .hero-content p {
+            font-size: 16px;
+            color: var(--text-muted);
+            margin-bottom: 32px;
+        }
+        .btn-cta {
+            display: inline-block;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 12px 32px;
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+        .btn-cta:hover {
+            background-color: var(--gold);
+            color: var(--deep-wine);
+        }
+
+        /* MAIN CONTENT AREA */
+        .main-wrapper {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            gap: 50px;
+            margin-top: 60px;
+            margin-bottom: 100px;
+        }
+
+        /* SIDEBAR */
+        .sidebar-card {
+            background-color: var(--deep-wine);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        .sidebar-title {
+            padding: 20px;
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            color: var(--gold);
+        }
+        .sidebar-list li a {
+            display: block;
+            padding: 14px 20px;
+            font-size: 13px;
+            color: var(--text-muted);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            transition: all 0.2s;
+        }
+        .sidebar-list li:last-child a { border-bottom: none; }
+        .sidebar-list li a:hover, 
+        .sidebar-list li.active a {
+            color: var(--white);
+            background-color: rgba(255, 255, 255, 0.03);
+            font-weight: 700;
+        }
+
+        /* MAIN CONTENTS */
+        main {
+            background-color: var(--deep-wine);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            padding: 40px;
+        }
+
+        .content-header h2 {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 16px;
+        }
+        .content-header .bar {
+            width: 40px;
+            height: 2px;
+            background-color: var(--gold);
+            margin-bottom: 30px;
+        }
+
+        .content-body p {
+            font-size: 15px;
+            color: var(--text-light);
+            margin-bottom: 30px;
+        }
+
+        /* DISPLAY IMAGE */
+.media-mockup{
+    text-align:center;
+    margin-bottom:35px;
+    padding:20px;
+    background:none;
+    border:none;
+}
+
+.media-mockup img{
+    width:550px;
+    max-width:100%;
+    height:auto;
+    display:block;
+    margin:0 auto;
+    border-radius:15px;
+    box-shadow:0 5px 20px rgba(0,0,0,0.3);
+    transition:transform 0.3s ease;
+}
+
+.media-mockup img:hover{
+    transform:scale(1.02);
+}
+
+        /* SPECIFICATION LIST */
+        .element-list {
+            background-color: rgba(0, 0, 0, 0.1);
+            padding: 24px;
+            border-left: 2px solid var(--gold);
+        }
+        .element-list-title {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--gold);
+            letter-spacing: 1px;
+        }
+        .element-list li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 10px;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+        .element-list li:last-child { margin-bottom: 0; }
+        .element-list li::before {
+            content: "-";
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+        }
+        .element-list b {
+            color: var(--white);
+        }
+
+        /* FOOTER AREA */
+        footer {
+            background-color: var(--deep-wine);
+            color: var(--text-muted);
+            padding: 60px 0;
+            font-size: 12px;
+            border-top: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .footer-box {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .footer-left .f-logo {
+            font-size: 22px;
+            font-weight: 900;
+            color: var(--white);
+            margin-bottom: 12px;
+        }
+
+        .footer-right {
+            text-align: right;
+        }
+        .company-info {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .company-info span {
+            margin: 0 6px;
+        }
+        .copyright {
+            margin-top: 20px;
+        }
+
+        @media (max-width: 992px) {
+            .main-wrapper {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .header-box { height: auto; padding: 20px 0; flex-direction: column; gap: 16px; }
+            .nav-wrapper { align-items: center; }
+            .hero-banner { height: auto; padding: 60px 0; }
+            .hero-content h1 { font-size: 32px; }
+            .footer-box { flex-direction: column; text-align: center; gap: 20px; }
+            .footer-right { text-align: center; width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-box">
+            <div class="logo">루바토<span>부티크</span></div>
+            <div class="nav-wrapper">
+                <div class="top-utility">
+                    <a href="#">로그인</a><span>|</span>
+                    <a href="#">회원가입</a><span>|</span>
+                    <a href="#">장바구니 (0)</a><span>|</span>
+                    <a href="#">주문조회</a>
+                </div>
+                <ul class="main-menu">
+                    <li><a href="#">신상품</a></li>
+                    <li><a href="#">인기상품</a></li>
+                    <li><a href="#">아우터</a></li>
+                    <li><a href="#">컬렉션</a></li>
+                    <li><a href="#">커뮤니티</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero-banner">
+        <div class="container">
+            <div class="hero-content">
+                <span class="season-tag">가을 / 겨울 프리미엄</span>
+                <h1>버건디 셀렉션</h1>
+                <p>시대를 초월한 우아함과 클래식한 실루엣의 완성</p>
+                <a href="#" class="btn-cta">지금 확인하기</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="container main-wrapper">
+        
+        <aside>
+            <div class="sidebar-card">
+                <div class="sidebar-title">카테고리</div>
+                <ul class="sidebar-list">
+                    <li class="active"><a href="#">코트 & 자켓</a></li>
+                    <li><a href="#">프리미엄 니트웨어</a></li>
+                    <li><a href="#">드레스 & 수트</a></li>
+                    <li><a href="#">에센셜 탑</a></li>
+                    <li><a href="#">액세서리</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <main>
+            <div class="content-header">
+                <h2>시그니처 테일러드 롱 코트</h2>
+                <div class="bar"></div>
+            </div>
+            
+            <div class="content-body">
+                <p>
+                    정밀한 테일러링과 엄선된 패브릭으로 제작되어 구조적인 실루엣을 제안하는 롱 코트입니다. 클래식 무드의 색조를 극대화한 독창적인 마감 처리가 특징입니다.
+                </p>
+
+                <div class="media-mockup">
+    <img src="C:\홈페이지\yifu.png" alt="버건디 코트">
+         </div>
+                <ul class="element-list">
+                    <div class="element-list-title">상세 정보</div>
+                    <li><b>소재 :</b> 90% 프리미엄 메리노 울, 10% 캐시미어</li>
+                    <li><b>색상 :</b> 클래식 버건디</li>
+                    <li><b>핏 :</b> 더블 브레스트 슬림 스트레이트 핏</li>
+                    <li><b>세탁 방법 :</b> 드라이클리닝 전용</li>
+                </ul>
+            </div>
+        </main>
+
+    </div>
+
+    <footer>
+        <div class="container footer-box">
+            <div class="footer-left">
+                <div class="f-logo">루바토 부티크</div>
+                <p>프리미엄 패션 브랜드 이커머스 레이아웃</p>
+            </div>
+            <div class="footer-right">
+                <ul class="company-info">
+                    <li>상호명: 루바토 부티크 <span>|</span> 주소: 대한민국 서울특별시</li>
+                    <li>대표번호: 1588-1234 <span>|</span> 이메일: BOUTIQUE@RUBATO.COM</li>
+                </ul>
+                <div class="copyright">
+                    COPYRIGHT (C) 2026 RUBATO BOUTIQUE ALL RIGHTS RESERVED.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
